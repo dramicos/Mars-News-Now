@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mars News</title>
+    <!-- Set the viewport the way Bootstrap likes it -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bring in the Bootstrap stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <div class="jumbotron text-center">
+        <h1>Mission to Mars</h1>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+    <div class="col-lg-12 col-lg-6">          
+        <div class="card embed-responsive">
+            <div class="row">
+                <h3 class="card-header">Latest Mars News</h3>
+                <h4>{{ mars.news_title }}</h4>
+                <p>{{ mars.news_intro }}</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-lg-3 col-lg-1">
+                    <h3 class="card-header">Featured Image</h3>
+                    <img alt="Featured Image" class="card-img-top embed-responsive-item" src={{ mars.featured_img }}>
+                </div>
+                <div class="col-lg-6 col-lg-3 col-lg-1">
+                    <h5 class="card-header">Mars Data</h5>
+                    {{ mars.mars_facts|safe}}
+                </div>
+            </div>
+            <div class="row">
+                <h1 class="card-header text-center">Mars Hemispheres</h1>
+                {% for img in mars.hemisphere_imgs %}
+                <div class="col-lg-3 col-md-2 col-md-1">
+                    <img alt="Featured Image" class="card-img-top embed-responsive-item" src='{{ img.img_url }}'>
+                    <h1>{{img.title}}</h1>
+                </div>
+                {% endfor %}
+            </div>
+        </div>          
+    </div>
+
+
+    <!-- Import the Bootstrap JavaScript code -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
+</body>
+
+</html>
