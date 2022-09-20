@@ -54,11 +54,14 @@ def scrape():
     # Drops the row used as the columns
     mars_facts.drop(mars_facts.index[0], inplace=True)
 
-    # Remove column name that isn't needed
-    mars_facts.rename(columns={ 'Mars - Earth Comparison' : '' }, inplace=True)
+    # Get rid of the description column name
+    mars_facts.rename(columns={'Mars - Earth Comparison' : ''}, inplace=True)
 
-    # Save the table to html without index so it looks nicer
-    mars_facts_html = mars_facts.to_html(index=False)
+    # set now un-named description column to index
+    mars_facts.set_index("", inplace=True)
+
+    # Save the table to html with classes so it looks nicer
+    mars_facts_html = mars_facts.to_html(classes=["table", "table-bordered", "table-striped", "table-hover", "col-lg-12"], justify='center')
 
     # Next website
     url = 'https://marshemispheres.com/'
